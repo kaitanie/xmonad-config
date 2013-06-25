@@ -10,5 +10,6 @@ fi
 
 xmodmap ~/.xmonad/xmodmap-settings
 
-notify-send -a "keymap.sh" "Keymap changed" "The current keymap is $1"
+capitalizedname=$(echo $1 | tr [a-z] [A-Z])
+notify-send -a "keymap.sh" "Current keymap:" "<b>$capitalizedname</b>"
 
