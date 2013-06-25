@@ -24,4 +24,6 @@ AltGr + Enter : Open new xterm
 AltGr + Shift + c : Close window
 AltGr + Space : Cycle through window layouts on the current desktop
 AltGr + <number> : Switch to desktop <number>
+AltGr + Shift + f : switch to Finnish keyboard layout
+AltGr + Shift + u : Switch to UK keyboard layout
 
