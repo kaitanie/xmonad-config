@@ -10,3 +10,5 @@ fi
 
 xmodmap ~/.xmonad/xmodmap-settings
 
+notify-send -a "keymap.sh" "Keymap changed" "The current keymap is $1"
+
