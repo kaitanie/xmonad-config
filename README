@@ -1,0 +1,27 @@
+Installation:
+
+0. You need at least:
+- xmonad (+ xmonad-devel and xmonad-contrib-devel)
+- xmobar
+- xterm
+- emacs (with haskell-mode)
+
+1. Clone the repository https://github.com/kaitanie/xmonad-config.git
+
+2. ln -s ~/xmonad-config ~/.xmonad
+
+3. Add the following line to your ~/.bashrc:
+source ~/.xmonad/profile.d/*.sh
+
+If you'd like to use xmonad as a window manager for LXDE:
+1. open Preferences -> Desktop Session Settings
+2. go to Advanced settings
+3. set "Window Manager" to xmonad
+4. click "OK"
+
+Basic keybindings:
+AltGr + Enter : Open new xterm
+AltGr + Shift + c : Close window
+AltGr + Space : Cycle through window layouts on the current desktop
+AltGr + <number> : Switch to desktop <number>
+
