@@ -335,6 +335,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|.  shiftMask, xK_p ), spawn "kopete")
     , ((modMask .|.  shiftMask, xK_b ), spawn "google-chrome")
     , ((modMask .|.  shiftMask, xK_x ), spawn "xterm")
+    , ((modMask .|.  shiftMask, xK_s ), spawn "unison -terse -batch keep")
     , ((modMask, xK_z ),                spawn "emacs")
 
     --Keyboard layout
