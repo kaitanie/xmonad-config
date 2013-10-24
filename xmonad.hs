@@ -62,6 +62,7 @@ main = do
         _ <- spawn "xset -b" -- Disable the system bell
         _ <- spawn "xscreensaver -nosplash"
         _ <- spawn "thunar --daemon"
+        _ <- spawn "xrdb merge ~/.xmonad/Xresources" -- Read the custom Xresources
         -- trayerProc <- spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut true --expand false --width 10 --transparent true --tint 0x191970 --height 12"
         xmodmapProc <- spawn "xmodmap ~/.xmonad/xmodmap-settings" -- enable our keyboard settings (make Caps Lock an additional CTRL etc.)
         xmonad  $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
