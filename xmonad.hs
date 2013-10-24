@@ -57,9 +57,12 @@ import XMonad.Hooks.EwmhDesktops
 -- Main --
 main = do
         xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"  -- start xmobar
---        nmAppletProc <- spawn "nm-applet --sm-disable"
+        nmAppletProc <- spawn "nm-applet --sm-disable"
+        _ <- spawn "/usr/bin/xcompmgr -n"
         _ <- spawn "xset -b" -- Disable the system bell
---        trayerProc <- spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut true --expand false --width 10 --transparent true --tint 0x191970 --height 12"
+        _ <- spawn "xscreensaver -nosplash"
+        _ <- spawn "thunar --daemon"
+        -- trayerProc <- spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut true --expand false --width 10 --transparent true --tint 0x191970 --height 12"
         xmodmapProc <- spawn "xmodmap ~/.xmonad/xmodmap-settings" -- enable our keyboard settings (make Caps Lock an additional CTRL etc.)
         xmonad  $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
                 { manageHook = myManageHook
