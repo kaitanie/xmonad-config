@@ -266,7 +266,6 @@ viewWeb = windows (W.greedyView "2:web")                           -- (0,0a)
 --keybinding: hit mod + s + <searchengine>
 searchEngineMap method = M.fromList $
        [ ((0, xK_g), method S.google )
-       , ((0, xK_y), method S.youtube )
        , ((0, xK_m), method S.maps )
        , ((0, xK_w), method S.wikipedia )
        , ((0, xK_h), method S.hoogle )
@@ -351,6 +350,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0                       , 0x1008ff11 ), spawn "amixer -q set Master 2dB-")
     , ((0                       , 0x1008ff12 ), spawn "amixer -q set Master toggle")
 
+    -- Lock screen
+    , ((modMask .|. shiftMask, xK_y), spawn "xscreensaver-command -lock")
 
     -- quit, or restart
     , ((modMask .|. shiftMask, xK_q ), io (exitWith ExitSuccess))
