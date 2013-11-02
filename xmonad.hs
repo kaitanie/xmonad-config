@@ -342,8 +342,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask, xK_z ),                spawn "emacs")
 
     --Keyboard layout
-    , ((modMask .|.  shiftMask, xK_u ), spawn "keymap.sh gb")
-    , ((modMask .|.  shiftMask, xK_f ), spawn "keymap.sh fi")
+    , ((modMask .|.  shiftMask, xK_u ), spawn "~/.xmonad/bin/keymap.sh gb")
+    , ((modMask .|.  shiftMask, xK_f ), spawn "~/.xmonad/bin/keymap.sh fi")
 
     -- volume control
     , ((0                       , 0x1008ff13 ), spawn "amixer -q set Master 2dB+")
