@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$1" == "fi" ]; then
     /usr/bin/setxkbmap fi
