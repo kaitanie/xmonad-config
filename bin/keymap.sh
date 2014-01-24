@@ -8,6 +8,10 @@ if [ "$1" == "gb" ]; then
     /usr/bin/setxkbmap gb
 fi
 
+if [ "$1" == "us" ]; then
+    /usr/bin/setxkbmap us
+fi
+
 xmodmap ~/.xmonad/xmodmap-settings
 
 capitalizedname=$(echo $1 | tr [a-z] [A-Z])
