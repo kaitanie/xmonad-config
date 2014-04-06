@@ -57,6 +57,8 @@ import XMonad.Hooks.EwmhDesktops
 -- Main --
 main = do
         xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"  -- start xmobar
+--        gnomeSettindsDaemonProc <- spawn "gnome-settings-daemon"
+        bluetoothAppletProc <- spawn "bluetooth-applet"
         nmAppletProc <- spawn "nm-applet --sm-disable"
         _ <- spawn "/usr/bin/xcompmgr -n"
         _ <- spawn "xset -b" -- Disable the system bell
