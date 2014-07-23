@@ -56,15 +56,14 @@ import XMonad.Hooks.EwmhDesktops
 
 -- Main --
 main = do
---        xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"  -- start xmobar
+        xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"  -- start xmobar
 --        gnomeSettindsDaemonProc <- spawn "gnome-settings-daemon"
---        bluetoothAppletProc <- spawn "bluetooth-applet"
---        nmAppletProc <- spawn "nm-applet --sm-disable"
---        _ <- spawn "/usr/bin/xcompmgr -n"
---        _ <- spawn "xset -b" -- Disable the system bell
---        _ <- spawn "xscreensaver -nosplash"
---        _ <- spawn "thunar --daemon"
-        _ <- spawn "xrdb load /dev/null" -- Clear the X resource DB to work around CentOS 7 bug
+        bluetoothAppletProc <- spawn "bluetooth-applet"
+        nmAppletProc <- spawn "nm-applet --sm-disable"
+        _ <- spawn "/usr/bin/xcompmgr -n"
+        _ <- spawn "xset -b" -- Disable the system bell
+        _ <- spawn "xscreensaver -nosplash"
+        _ <- spawn "thunar --daemon"
         _ <- spawn "xrdb merge ~/.xmonad/Xresources" -- Read the custom Xresources
         -- trayerProc <- spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut true --expand false --width 10 --transparent true --tint 0x191970 --height 12"
         xmodmapProc <- spawn "xmodmap ~/.xmonad/xmodmap-settings" -- enable our keyboard settings (make Caps Lock an additional CTRL etc.)
@@ -75,7 +74,7 @@ main = do
                 , normalBorderColor = myNormalBorderColor
                 , focusedBorderColor = myFocusedBorderColor
                 , keys = myKeys
-                , logHook = setWMName "LG3D"  -- >> (myLogHook xmproc)
+                , logHook = setWMName "LG3D" >> (myLogHook xmproc)
                 , modMask = myModMask
                 , terminal = myTerminal
                 , workspaces = myWorkspaces
