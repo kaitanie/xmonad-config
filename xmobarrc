@@ -3,17 +3,15 @@ Config { font         = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
              , fgColor      = "#00FFFF"
 	     , position =  Top
              , lowerOnStart = False
-             , commands     = [ Run Network "eth0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
-                              , Run Network "wlan0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+             , commands     = [ Run Network "enp0s25" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+                              , Run Network "wlp2s0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
                               , Run Battery [] 600
-                              , Run Cpu ["<cpu0>/<cpu1>","-L","3","-H","50","-l","green","--normal","orange","--high","red"]   40
-                              , Run Cpu ["<cpu0>","-L","3","-H","50","-l","green","--normal","orange","--high","red"]  40
                               , Run Memory ["-t","Mem: <usedratio>%", "-l", "green", "--normal","orange","--high","red"] 40
 			      , Run Date "%a %b %_d %H:%M" "date" 60
-                              , Run CpuFreq ["-t","Freq: <cpu0> | <cpu1>","-L","0","-H","2","-l","green","-n","orange","-h","red"] 50
+                              , Run CpuFreq ["-t","Freq: <cpu0> | <cpu1> | <cpu2> | <cpu3>","-L","0","-H","2","-l","green","-n","orange","-h","red"] 50
                               , Run StdinReader
                               ]
              , sepChar      = "%"
              , alignSep     = "}{"
-	     , template = " %StdinReader% }{ %cpu% @ %cpufreq% <fc=#0033FF>|</fc>  %memory% <fc=#0033FF>|</fc> %eth0% %wlan0% <fc=#0033FF>|</fc> %date%             "
+	     , template = " %StdinReader% }{ %cpufreq% <fc=#0033FF>|</fc>  %memory% <fc=#0033FF>|</fc> %enp0s25% %wlp2s0% <fc=#0033FF>|</fc> |%battery% | %date%"
              }

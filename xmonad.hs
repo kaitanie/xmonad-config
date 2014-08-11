@@ -60,11 +60,14 @@ main = do
 --        gnomeSettindsDaemonProc <- spawn "gnome-settings-daemon"
         bluetoothAppletProc <- spawn "bluetooth-applet"
         nmAppletProc <- spawn "nm-applet --sm-disable"
-        _ <- spawn "/usr/bin/xcompmgr -n"
+--        _ <- spawn "/usr/bin/xcompmgr -n"
+--        _ <- spawn "stalonetray -bg '#000000' -i 8 -geometry 19x1+372+0"
+        _ <- spawn "/usr/libexec/polkit-mate-authentication-agent-1"
         _ <- spawn "xset -b" -- Disable the system bell
-        _ <- spawn "xscreensaver -nosplash"
-        _ <- spawn "thunar --daemon"
+        _ <- spawn "mate-screensaver"
+--        _ <- spawn "thunar --daemon"
         _ <- spawn "xrdb merge ~/.xmonad/Xresources" -- Read the custom Xresources
+        _ <- spawn "feh --bg-scale ~/keep/pics/wallpapers/abstract-wallpaper.jpg"
         -- trayerProc <- spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut true --expand false --width 10 --transparent true --tint 0x191970 --height 12"
         xmodmapProc <- spawn "xmodmap ~/.xmonad/xmodmap-settings" -- enable our keyboard settings (make Caps Lock an additional CTRL etc.)
         xmonad  $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
@@ -352,7 +355,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0                       , 0x1008ff12 ), spawn "amixer -q set Master toggle")
 
     -- Lock screen
-    , ((modMask .|. shiftMask, xK_y), spawn "xscreensaver-command -lock")
+    , ((modMask .|. shiftMask, xK_y), spawn "mate-screensaver-command --lock")
 
     -- quit, or restart
     , ((modMask .|. shiftMask, xK_q ), io (exitWith ExitSuccess))
