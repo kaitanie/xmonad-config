@@ -60,6 +60,7 @@ main = do
 --        gnomeSettindsDaemonProc <- spawn "gnome-settings-daemon"
         bluetoothAppletProc <- spawn "bluetooth-applet"
         nmAppletProc <- spawn "nm-applet --sm-disable"
+        _ <- spawn "xfce4-power-manager"
         _ <- spawn "/usr/bin/xcompmgr -n"
         _ <- spawn "xset -b" -- Disable the system bell
         _ <- spawn "xscreensaver -nosplash"
@@ -336,11 +337,11 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
      , ((modMask , xK_grave), scratchpadSpawnAction defaultConfig  {terminal = myScratchpad})
 
     --Programs
-    , ((modMask .|.  shiftMask, xK_u ), spawn "unison-gtk2 default")
+    , ((modMask .|.  shiftMask, xK_u ), spawn "unison default")
     , ((modMask .|.  shiftMask, xK_p ), spawn "kopete")
     , ((modMask .|.  shiftMask, xK_b ), spawn "google-chrome")
     , ((modMask .|.  shiftMask, xK_x ), spawn "xterm")
-    , ((modMask .|.  shiftMask, xK_s ), spawn "unison-gtk -terse -batch keep")
+    , ((modMask .|.  shiftMask, xK_s ), spawn "unison -terse -batch keep")
     , ((modMask, xK_z ),                spawn "emacs")
 
     --Keyboard layout

@@ -3,8 +3,8 @@ Config { font         = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
              , fgColor      = "#00FFFF"
 	     , position =  Top
              , lowerOnStart = False
-             , commands     = [ Run Network "eth0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
-                              , Run Network "wlan0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+             , commands     = [ Run Network "enp0s25" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+                              , Run Network "wlp2s0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
                               , Run Battery [] 600
                               , Run Memory ["-t","Mem: <usedratio>%", "-l", "green", "--normal","orange","--high","red"] 40
 			      , Run Date "%a %b %_d %H:%M" "date" 60
@@ -13,5 +13,5 @@ Config { font         = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
                               ]
              , sepChar      = "%"
              , alignSep     = "}{"
-	     , template = " %StdinReader% }{ %cpufreq% <fc=#0033FF>|</fc>  %memory% <fc=#0033FF>|</fc> %eth0% %wlan0% <fc=#0033FF>|</fc> |%battery% | %date%"
+	     , template = " %StdinReader% }{ %cpufreq% <fc=#0033FF>|</fc>  %memory% <fc=#0033FF>|</fc> %enp0s25% %wlp2s0% <fc=#0033FF>|</fc> |%battery% | %date%"
              }
