@@ -153,7 +153,7 @@ myTheme = defaultTheme { decoHeight = 16
                         , inactiveBorderColor = "#000000"
                         }
 
-newLayoutHook =  onWorkspace "1:chat" imLayout $ onWorkspace "2:web" webL $ onWorkspace "3:mail" imLayout $ onWorkspace "4:pdf" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:lisp" programmingL $ onWorkspace "7:grid" programmingL $ onWorkspace "8:code" programmingL $ onWorkspace "9:vid" fullL $ standardLayouts
+newLayoutHook =  onWorkspace "1:chat" imLayout $ onWorkspace "2:web" webL $ onWorkspace "3:mail" imLayout $ onWorkspace "4:pdf" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:lisp" programmingL $ onWorkspace "7:skynet" programmingL $ onWorkspace "8:app" programmingL $ onWorkspace "9:vid" fullL $ standardLayouts
    where
         standardLayouts =   avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Grid ||| Full ||| Circle)
 
@@ -259,7 +259,7 @@ myFocusedBorderColor = "#FF0000"
 
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1:chat", "2:web", "3:mail", "4:pdf", "5:doc", "6:code" ,"7:lisp", "8:grid", "9:vid"]
+myWorkspaces = ["1:chat", "2:web", "3:mail", "4:pdf", "5:doc", "6:code" ,"7:skynet", "8:app", "9:vid"]
 --
 
 -- Switch to the "web" workspace
