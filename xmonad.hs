@@ -9,6 +9,7 @@ import qualified Data.Map as M
 import XMonad.Util.EZConfig(additionalKeys)
 import System.Exit
 import Graphics.X11.Xlib
+import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
 
@@ -352,6 +353,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0                       , 0x1008ff11 ), spawn "amixer -q set Master 2dB-")
     , ((0                       , 0x1008ff12 ), spawn "amixer -q set Master toggle")
 
+    -- Brightness control
+    , ((0                       , xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
+    , ((0                       , xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
+      
     -- Lock screen
     , ((modMask .|. shiftMask, xK_y), spawn "xscreensaver-command -lock")
 
