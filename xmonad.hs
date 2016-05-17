@@ -63,7 +63,8 @@ main = do
         nmAppletProc <- spawn "nm-applet --sm-disable"
         _ <- spawn "/usr/bin/xcompmgr -n"
         _ <- spawn "xset -b" -- Disable the system bell
-        _ <- spawn "xscreensaver -nosplash"
+        _ <- spawn "xset dpms 0 600 0" -- Enable DPMS
+--        _ <- spawn "xscreensaver -nosplash"
         _ <- spawn "thunar --daemon"
         _ <- spawn "xrdb merge ~/.xmonad/Xresources" -- Read the custom Xresources
         _ <- spawn "~/.xmonad/bin/scroll.sh"         -- Enable Trackpoint scrolling on Thinkpads
@@ -90,19 +91,21 @@ main = do
 myManageHook :: ManageHook
 myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.45) <+> ( composeAll . concat $
                 [[isFullscreen                  --> doFullFloat
+                , className =? "kde-nm-connection-editor" --> doShift "1:sys"
+                , className =? "pavucontrol"              --> doShift "1:sys"
                 , className =? "OpenOffice.org 3.1" --> doShift "5:doc"
                 , className =? "OpenOffice.org" --> doShift "5:doc"
                 , className =?  "Xmessage"      --> doCenterFloat
                 , className =?  "Zenity"        --> doCenterFloat
                 , className =? "feh"            --> doCenterFloat
-                , className =? "Pidgin"         --> doShift "1:chat"
-                , className =? "Kopete"         --> doShift "1:chat"
-                , className =? "Ekiga"          --> doShift "1:chat"
+                , className =? "Pidgin"         --> doShift "1:sys"
+                , className =? "Kopete"         --> doShift "1:sys"
+                , className =? "Ekiga"          --> doShift "1:sys"
                 , className =? "Gimp"           --> doShift "9:gimp"
                 , className =? "uzbl"           --> doShift "2:web"
                 , className =? "vimprobable"    --> doShift "2:web"
-                , className =? "Pidgin"         --> doShift "1:chat"
---                , className =? "Skype"          --> doShift "1:chat"
+                , className =? "Pidgin"         --> doShift "1:sys"
+--                , className =? "Skype"          --> doShift "1:sys"
                 , className =? "MPlayer"	--> doShift "8:vid"
                 , className =? "VirtualBox"	--> doShift "6:virtual"
                 , className =? "Apvlv"          --> doShift "4:pdf"
@@ -110,7 +113,7 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.45) <+> ( c
                 , className =? "Epdfview"       --> doShift "4:pdf"
                 , className =? "Okular"         --> doShift "4:pdf"
                 , className =? "Remmina"        --> doShift "6:geant4"
-                , className =? "Trayer"         --> doShift "1:chat"]
+                , className =? "Trayer"         --> doShift "1:sys"]
                 ]
                         )  <+> manageDocks
 
@@ -153,7 +156,7 @@ myTheme = defaultTheme { decoHeight = 16
                         , inactiveBorderColor = "#000000"
                         }
 
-newLayoutHook =  onWorkspace "1:chat" imLayout $ onWorkspace "2:web" webL $ onWorkspace "3:mail" imLayout $ onWorkspace "4:pdf" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:lisp" programmingL $ onWorkspace "7:skynet" programmingL $ onWorkspace "8:app" programmingL $ onWorkspace "9:vid" fullL $ standardLayouts
+newLayoutHook =  onWorkspace "1:sys" imLayout $ onWorkspace "2:web" webL $ onWorkspace "3:mail" imLayout $ onWorkspace "4:pdf" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:lisp" programmingL $ onWorkspace "7:skynet" programmingL $ onWorkspace "8:app" programmingL $ onWorkspace "9:vid" fullL $ standardLayouts
    where
         standardLayouts =   avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Grid ||| Full ||| Circle)
 
@@ -191,7 +194,7 @@ newLayoutHook =  onWorkspace "1:chat" imLayout $ onWorkspace "2:web" webL $ onWo
 
 
 --LayoutHook
-myLayoutHook  =  onWorkspace "1:chat" imLayout $  onWorkspace "2:web" webL $ onWorkspace "3:code" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:geant4" programmingL $ onWorkspace "9:gimp" gimpL $ onWorkspace "6:games" fullL $ onWorkspace "8:vid" fullL $ standardLayouts
+myLayoutHook  =  onWorkspace "1:sys" imLayout $  onWorkspace "2:web" webL $ onWorkspace "3:code" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:geant4" programmingL $ onWorkspace "9:gimp" gimpL $ onWorkspace "6:games" fullL $ onWorkspace "8:vid" fullL $ standardLayouts
    where
         standardLayouts =   avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Grid ||| Full ||| Circle)
 
@@ -259,7 +262,7 @@ myFocusedBorderColor = "#FF0000"
 
 --Workspaces
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1:chat", "2:web", "3:mail", "4:pdf", "5:doc", "6:code" ,"7:skynet", "8:app", "9:vid"]
+myWorkspaces = ["1:sys", "2:web", "3:mail", "4:pdf", "5:doc", "6:code" ,"7:skynet", "8:app", "9:vid"]
 --
 
 -- Switch to the "web" workspace
@@ -340,7 +343,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     --Programs
     , ((modMask .|.  shiftMask, xK_u ), spawn "unison-gtk2 default")
     , ((modMask .|.  shiftMask, xK_p ), spawn "kopete")
-    , ((modMask .|.  shiftMask, xK_b ), spawn "google-chrome")
+    , ((modMask .|.  shiftMask, xK_b ), spawn "firefox.real")
     , ((modMask .|.  shiftMask, xK_x ), spawn "xterm")
     , ((modMask .|.  shiftMask, xK_s ), spawn "unison-gtk -terse -batch keep")
     , ((modMask, xK_z ),                spawn "emacs")
@@ -359,7 +362,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0                       , xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
       
     -- Lock screen
-    , ((modMask .|. shiftMask, xK_y), spawn "xscreensaver-command -lock")
+    , ((modMask .|. shiftMask, xK_y), spawn "/home/mael/sw/i3lock-fancy/lock")
 
     -- quit, or restart
     , ((modMask .|. shiftMask, xK_q ), io (exitWith ExitSuccess))

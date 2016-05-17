@@ -5,6 +5,7 @@ Config { font         = "-*-terminus-*-*-*-*-12-*-*-*-*-*-*-u"
              , lowerOnStart = False
              , commands     = [ Run Network "eth0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
                               , Run Network "wlan0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
+                              , Run Network "wwan0" ["-L","0","-H","32","-l", "green", "--normal","orange","--high","red"] 40
                               , Run Battery [] 600
                               , Run Memory ["-t","Mem: <usedratio>%", "-l", "green", "--normal","orange","--high","red"] 40
 			      , Run Date "%a %b %_d %H:%M" "date" 60
