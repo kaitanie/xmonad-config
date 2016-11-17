@@ -12,7 +12,6 @@ import Graphics.X11.Xlib
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 
-
 -- actions
 import XMonad.Actions.CycleWS
 import XMonad.Actions.WindowGo
@@ -123,7 +122,8 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.45) <+> ( c
 myLogHook :: Handle -> X ()
 myLogHook h = dynamicLogWithPP $ customPP { ppOutput = hPutStrLn h }
 
-
+--myTaffyLogHook :: Handle -> X ()
+--myTaffyLogHook h = dbusLog client pp
 
 ---- Looks --
 ---- bar
@@ -156,7 +156,7 @@ myTheme = defaultTheme { decoHeight = 16
                         , inactiveBorderColor = "#000000"
                         }
 
-newLayoutHook =  onWorkspace "1:sys" imLayout $ onWorkspace "2:web" webL $ onWorkspace "3:mail" imLayout $ onWorkspace "4:pdf" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:lisp" programmingL $ onWorkspace "7:skynet" programmingL $ onWorkspace "8:app" programmingL $ onWorkspace "9:vid" fullL $ standardLayouts
+newLayoutHook =  onWorkspace "1:sys" imLayout $ onWorkspace "2:web" webL $ onWorkspace "3:mail" webL $ onWorkspace "4:pdf" programmingL $ onWorkspace "5:doc" writingL $ onWorkspace "6:lisp" programmingL $ onWorkspace "7:skynet" programmingL $ onWorkspace "8:app" programmingL $ onWorkspace "9:vid" fullL $ standardLayouts
    where
         standardLayouts =   avoidStruts  $ (tabLayout ||| tiled |||  reflectTiled ||| Mirror tiled ||| Grid ||| Full ||| Circle)
 
@@ -236,7 +236,8 @@ myLayoutHook  =  onWorkspace "1:sys" imLayout $  onWorkspace "2:web" webL $ onWo
 -------------------------------------------------------------------------------
 ---- Terminal --
 myTerminal :: String
-myTerminal = "xterm"
+--myTerminal = "xterm"
+myTerminal = "urxvt"
 
 myEditor :: String
 myEditor = "emacs"
@@ -344,7 +345,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|.  shiftMask, xK_u ), spawn "unison-gtk2 default")
     , ((modMask .|.  shiftMask, xK_p ), spawn "kopete")
     , ((modMask .|.  shiftMask, xK_b ), spawn "firefox.real")
-    , ((modMask .|.  shiftMask, xK_x ), spawn "xterm")
+    , ((modMask .|.  shiftMask, xK_x ), spawn myTerminal)
     , ((modMask .|.  shiftMask, xK_s ), spawn "unison-gtk -terse -batch keep")
     , ((modMask, xK_z ),                spawn "emacs")
 
@@ -360,7 +361,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- Brightness control
     , ((0                       , xF86XK_MonBrightnessUp), spawn "xbacklight -inc 5")
     , ((0                       , xF86XK_MonBrightnessDown), spawn "xbacklight -dec 5")
-      
+
     -- Lock screen
     , ((modMask .|. shiftMask, xK_y), spawn "/home/mael/sw/i3lock-fancy/lock")
 

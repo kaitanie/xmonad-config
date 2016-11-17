@@ -1,3 +1,8 @@
 XTerm*metaSendsEscape: true
 XTerm*background: black
 XTerm*foreground: white
+
+URxvt*metaSendsEscape: true
+URxvt*background: black
+URxvt*foreground: white
+
